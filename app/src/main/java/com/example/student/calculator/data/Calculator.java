@@ -5,7 +5,9 @@ package com.example.student.calculator.data;
  */
 
 public class Calculator {
+    //memory(op) + op
     private int result;
+    private boolean errorOccured;
 
     public static final int OPERATOR_ADD = 1;
     public static final int OPERATOR_SUB = 2;
@@ -19,6 +21,7 @@ public class Calculator {
 
     public void reset() {
         result = 0;
+        errorOccured = false;
     }
 
     public int setResult(int r) {
@@ -27,6 +30,9 @@ public class Calculator {
     }
 
     public int operate(int op, int a) {
+        if (errorOccured)
+            return 0;
+
         switch(op) {
             case OPERATOR_ADD:
                 result += a;
@@ -38,14 +44,17 @@ public class Calculator {
                 result *= a;
                 break;
             case OPERATOR_DIV:
-                result /= a;
+                if (a != 0)
+                    result /= a;
+                else
+                    return 0;
                 break;
         }
         return result;
     }
 
     public boolean isError() {
-        return false;
+        return errorOccured;
     }
 
     public int getResult() {

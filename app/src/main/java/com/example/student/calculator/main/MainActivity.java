@@ -9,6 +9,7 @@ import com.example.student.calculator.R;
 import com.example.student.calculator.data.Calculator;
 
 public class MainActivity extends AppCompatActivity implements CalculatorView {
+    //send every output to presenter only
 
     TextView resultTextView;
     CalculatorPresenter presenter = null;
